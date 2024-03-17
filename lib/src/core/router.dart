@@ -5,11 +5,8 @@ import '../auth/views/admin_auth_gate.dart';
 import '../auth/views/choice_login.dart';
 import '../auth/views/student_auth_gate.dart';
 import '../auth/views/teacher_auth_gate.dart';
-import '../constants/routes.dart';
+import '../shared/constants/routes.dart';
 import '../profile/user_profile.dart';
-import '../shared/settings/settings_controller.dart';
-import '../shared/settings/settings_service.dart';
-import '../shared/settings/settings_view.dart';
 import '../student/bottom_nav_bar.dart';
 import '../student/home_view.dart';
 import '../student/ui/create_student_form.dart';
@@ -17,9 +14,6 @@ import '../student/ui/student_list_page.dart';
 import 'splash_view.dart';
 
 part 'router.g.dart';
-
-SettingsService settingsService = SettingsService();
-SettingsController settingsController = SettingsController(settingsService);
 
 // This is the router provider that will be used in the main.dart file
 // to pass the router to the MaterialApp.router
@@ -133,12 +127,12 @@ GoRouter router(RouterRef ref) {
         builder: (context, state) => const StudentListPage(),
       ),
 
-      GoRoute(
-        path: SettingsView.path,
-        name: SettingsView.path,
-        builder: (context, state) =>
-            SettingsView(controller: settingsController),
-      ),
+      // GoRoute(
+      //   path: SettingsView.path,
+      //   name: SettingsView.path,
+      //   builder: (context, state) =>
+      //       SettingsView(controller: settingsController),
+      // ),
     ],
 
     //*if page not found then it will show the page not found from here.

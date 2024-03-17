@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../admin/admin_view.dart';
+import '../../admin/admin_view.dart';
 
 class DrawerNavRail extends StatefulWidget {
   const DrawerNavRail({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/drawer_widget.dart';
+import '../shared/widgets/drawer_widget.dart';
 
 class TeacherView extends StatelessWidget {
   const TeacherView({super.key});

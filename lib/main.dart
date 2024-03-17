@@ -3,15 +3,23 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:vidhyatri/src/boxes/hive_boxes.dart';
+import 'package:vidhyatri/src/shared/boxes/hive_boxes.dart';
 import 'src/firebase_options.dart';
 import 'src/app.dart';
-import 'src/shared/settings/settings_controller.dart';
-import 'src/shared/settings/settings_service.dart';
+import 'src/theme/controllers/theme_controller.dart';
+import 'src/theme/services/theme_service.dart';
+import 'src/theme/services/theme_service_hive.dart';
 import 'src/student/model/student_model.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // The ThemeServiceHive constructor requires a box name, the others do not.
+  // The box name is just a file name for the file that stores the settings.
+  final ThemeService themeService = ThemeServiceHive(
+    'flex_color_scheme_v5_box_5',
+  );
+  // Initialize the theme service.
+  await themeService.init();
   await Hive.initFlutter();
   Hive.registerAdapter(StudentModelAdapter());
   //for opening the student box
@@ -20,12 +28,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // Set up the SettingsController, which will glue user settings to multiple
-  // Flutter Widgets.
-  final settingsController = SettingsController(SettingsService());
-
+  // Flutter Widgets
   // Load the user's preferred theme while the splash screen is displayed.
   // This prevents a sudden theme change when the app is first displayed.
-  await settingsController.loadSettings();
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     // GoogleProvider(
@@ -35,9 +40,18 @@ void main() async {
   // Run the app and pass in the SettingsController. The app listens to the
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
+  // Create a ThemeController that uses the ThemeService.
+  final ThemeController themeController = ThemeController(themeService);
+  // Load preferred theme settings, while the app is loading, before MaterialApp
+  // is created, this prevents a theme change when the app is first displayed.
+  await themeController.loadAll();
+  // Run the app and pass in the ThemeController. The app listens to the
+  // ThemeController for changes. The same ThemeController as used in example 4
+  // controls all the myriad of Theme settings and the ThemeService also
+  // persists the settings with the injected ThemeServiceHive.
   runApp(Builder(builder: (context) {
     return UncontrolledProviderScope(
         container: ProviderContainer(),
-        child: MyApp(settingsController: settingsController));
+        child: MyApp(controller: themeController));
   }));
 }

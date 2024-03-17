@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../constants/routes.dart';
+import '../../shared/constants/routes.dart';
 
 class StudentAuthGate extends ConsumerWidget {
   const StudentAuthGate({super.key});

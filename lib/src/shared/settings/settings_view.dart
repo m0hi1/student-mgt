@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'settings_controller.dart';
+import 'package:vidhyatri/src/theme/controllers/theme_controller.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
@@ -9,7 +8,7 @@ import 'settings_controller.dart';
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key, required this.controller});
   static const path = '/settings';
-  final SettingsController controller;
+  final ThemeController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

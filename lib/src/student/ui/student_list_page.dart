@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import '../../boxes/hive_boxes.dart';
+import '../../shared/boxes/hive_boxes.dart';
 import '../model/student_model.dart';
 
 class StudentListPage extends StatefulWidget {

@@ -1,21 +1,22 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/router.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
-
-import 'shared/settings/settings_controller.dart';
+import 'theme/controllers/theme_controller.dart';
+import 'theme/core/flex_theme_dark.dart';
+import 'theme/core/flex_theme_light.dart';
+import 'theme/core/theme_data_dark.dart';
+import 'theme/core/theme_data_light.dart';
 
 /// The Widget that configures your application.
 class MyApp extends ConsumerWidget {
   const MyApp({
     super.key,
-    required this.settingsController,
+    required this.controller,
   });
 
-  final SettingsController settingsController;
+  final ThemeController controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +26,7 @@ class MyApp extends ConsumerWidget {
     // The ListenableBuilder Widget listens to the SettingsController for changes.
     // Whenever the user updates their settings, the MaterialApp is rebuilt.
     return ListenableBuilder(
-      listenable: settingsController,
+      listenable: controller,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp.router(
           routerConfig: router,
@@ -58,52 +59,65 @@ class MyApp extends ConsumerWidget {
 
           //* debug banner
           debugShowCheckedModeBanner: true,
+          // The Theme controller controls if we use FlexColorScheme made
+          // ThemeData or standard SDK ThemeData. It also
+          // controls all the configuration parameters used to define the
+          // FlexColorScheme object that produces the ThemeData object.
+
+          theme: controller.useFlexColorScheme
+              ? flexThemeLight(controller)
+              : themeDataLight(controller),
+          darkTheme: controller.useFlexColorScheme
+              ? flexThemeDark(controller)
+              : themeDataDark(controller),
+          // Use the dark/light theme based on controller setting.
+          themeMode: controller.themeMode,
           // Define a light and dark color theme. Then, read the user's
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
           // theme: ThemeData(),
           // darkTheme: ThemeData.dark(),
-          theme: FlexThemeData.light(
-            scheme: FlexScheme.materialBaseline,
-            appBarElevation: 0.5,
-            typography: Typography.material2021(
-              platform: defaultTargetPlatform,
-            ),
-            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-            blendLevel: 7,
-            subThemesData: const FlexSubThemesData(
-              blendOnLevel: 10,
-              blendOnColors: false,
-              useTextTheme: true,
-              useM2StyleDividerInM3: true,
-              alignedDropdown: true,
-              useInputDecoratorThemeInDialogs: true,
-            ),
-            visualDensity: FlexColorScheme.comfortablePlatformDensity,
-            useMaterial3: false,
-            swapLegacyOnMaterial3: true,
-          ),
-          darkTheme: FlexThemeData.dark(
-            scheme: FlexScheme.materialBaseline,
-            appBarElevation: 0.5,
-            typography:
-                Typography.material2021(platform: defaultTargetPlatform),
-            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-            blendLevel: 13,
-            subThemesData: const FlexSubThemesData(
-              blendOnLevel: 20,
-              useTextTheme: true,
-              useM2StyleDividerInM3: true,
-              alignedDropdown: true,
-              useInputDecoratorThemeInDialogs: true,
-            ),
-            visualDensity: FlexColorScheme.comfortablePlatformDensity,
-            useMaterial3: true,
-            swapLegacyOnMaterial3: true,
-            // To use the Playground font, add GoogleFonts package and uncomment
-            // fontFamily: GoogleFonts.notoSans().fontFamily,
-          ),
-          themeMode: settingsController.themeMode,
+          // theme: FlexThemeData.light(
+          //   scheme: FlexScheme.materialBaseline,
+          //   appBarElevation: 0.5,
+          //   typography: Typography.material2021(
+          //     platform: defaultTargetPlatform,
+          //   ),
+          //   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+          //   blendLevel: 7,
+          //   subThemesData: const FlexSubThemesData(
+          //     blendOnLevel: 10,
+          //     blendOnColors: false,
+          //     useTextTheme: true,
+          //     useM2StyleDividerInM3: true,
+          //     alignedDropdown: true,
+          //     useInputDecoratorThemeInDialogs: true,
+          //   ),
+          //   visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          //   useMaterial3: false,
+          //   swapLegacyOnMaterial3: true,
+          // ),
+          // darkTheme: FlexThemeData.dark(
+          //   scheme: FlexScheme.materialBaseline,
+          //   appBarElevation: 0.5,
+          //   typography:
+          //       Typography.material2021(platform: defaultTargetPlatform),
+          //   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+          //   blendLevel: 13,
+          //   subThemesData: const FlexSubThemesData(
+          //     blendOnLevel: 20,
+          //     useTextTheme: true,
+          //     useM2StyleDividerInM3: true,
+          //     alignedDropdown: true,
+          //     useInputDecoratorThemeInDialogs: true,
+          //   ),
+          //   visualDensity: FlexColorScheme.comfortablePlatformDensity,
+          //   useMaterial3: true,
+          //   swapLegacyOnMaterial3: true,
+          //   // To use the Playground font, add GoogleFonts package and uncomment
+          //   // fontFamily: GoogleFonts.notoSans().fontFamily,
+          // ),
+          // themeMode: settingsController.themeMode,
         );
       },
     );
