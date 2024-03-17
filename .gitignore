@@ -44,7 +44,6 @@ app.*.map.json
 
 # Node.js related
 /node_modules
-android
 .frontmatter
 .idea
 .vscode
