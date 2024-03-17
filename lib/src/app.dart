@@ -1,14 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/router.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
+import 'shared/settings/settings_controller.dart';
 
 /// The Widget that configures your application.
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({
     super.key,
     required this.settingsController,
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   final SettingsController settingsController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
     // Glue the SettingsController to the MaterialApp.
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
@@ -25,7 +27,8 @@ class MyApp extends StatelessWidget {
     return ListenableBuilder(
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
+        return MaterialApp.router(
+          routerConfig: router,
           // Providing a restorationScopeId allows the Navigator built by the
           // MaterialApp to restore the navigation stack when a user leaves and
           // returns to the app after it has been killed while running in the
@@ -53,31 +56,54 @@ class MyApp extends StatelessWidget {
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.appTitle,
 
+          //* debug banner
+          debugShowCheckedModeBanner: true,
           // Define a light and dark color theme. Then, read the user's
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
+          // theme: ThemeData(),
+          // darkTheme: ThemeData.dark(),
+          theme: FlexThemeData.light(
+            scheme: FlexScheme.materialBaseline,
+            appBarElevation: 0.5,
+            typography: Typography.material2021(
+              platform: defaultTargetPlatform,
+            ),
+            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+            blendLevel: 7,
+            subThemesData: const FlexSubThemesData(
+              blendOnLevel: 10,
+              blendOnColors: false,
+              useTextTheme: true,
+              useM2StyleDividerInM3: true,
+              alignedDropdown: true,
+              useInputDecoratorThemeInDialogs: true,
+            ),
+            visualDensity: FlexColorScheme.comfortablePlatformDensity,
+            useMaterial3: false,
+            swapLegacyOnMaterial3: true,
+          ),
+          darkTheme: FlexThemeData.dark(
+            scheme: FlexScheme.materialBaseline,
+            appBarElevation: 0.5,
+            typography:
+                Typography.material2021(platform: defaultTargetPlatform),
+            surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+            blendLevel: 13,
+            subThemesData: const FlexSubThemesData(
+              blendOnLevel: 20,
+              useTextTheme: true,
+              useM2StyleDividerInM3: true,
+              alignedDropdown: true,
+              useInputDecoratorThemeInDialogs: true,
+            ),
+            visualDensity: FlexColorScheme.comfortablePlatformDensity,
+            useMaterial3: true,
+            swapLegacyOnMaterial3: true,
+            // To use the Playground font, add GoogleFonts package and uncomment
+            // fontFamily: GoogleFonts.notoSans().fontFamily,
+          ),
           themeMode: settingsController.themeMode,
-
-          // Define a function to handle named routes in order to support
-          // Flutter web url navigation and deep linking.
-          onGenerateRoute: (RouteSettings routeSettings) {
-            return MaterialPageRoute<void>(
-              settings: routeSettings,
-              builder: (BuildContext context) {
-                switch (routeSettings.name) {
-                  case SettingsView.routeName:
-                    return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
-                  default:
-                    return const SampleItemListView();
-                }
-              },
-            );
-          },
         );
       },
     );

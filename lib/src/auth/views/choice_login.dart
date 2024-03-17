@@ -14,7 +14,7 @@ class LoginChoicePage extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              "What Descibe You Best",
+              "What Describe You Best",
               style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),

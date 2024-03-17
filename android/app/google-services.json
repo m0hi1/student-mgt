@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "377686682717",
+    "project_id": "vidhyatri-ed316",
+    "storage_bucket": "vidhyatri-ed316.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377686682717:android:40e98f67cb337d280671b4",
+        "android_client_info": {
+          "package_name": "com.codexwr.vidhyatri"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYyVbNm-H4SbyU7P8yBNffZItrQpLsn4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
