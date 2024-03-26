@@ -1,4 +1,5 @@
 const splashRoute = '/splash';
+const onboardingRoute = '/onboarding';
 const loginChoiceRoute = '/login-choice';
 const teacherAuthRoute = '/login-teacher';
 const studentAuthRoute = '/login-student';
@@ -7,4 +8,6 @@ const adminAuthRoute = '/admin-login';
 const adminRoute = '/admin';
 const studentRoute = '/student-home';
 const teacherRoute = '/teacher-home';
+const courseRoute = '/courses';
+const attendanceRoute = '/attendance';
 const userProfileRoute = '/User-Profile';

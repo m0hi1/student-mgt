@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../shared/constants/routes.dart';
+import '../../shared/constants/routes.dart';
 
-class SplashView extends StatelessWidget {
-  const SplashView({super.key});
+class OnBoardingScreen extends StatelessWidget {
+  const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class SplashView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Center(
-            child: Text("Splash Page"),
+            child: Text("OnBoarding Page"),
           ),
           ElevatedButton(
             onPressed: () {
-              context.namedLocation(loginChoiceRoute);
+              context.goNamed(loginChoiceRoute);
             },
             child: const Text('Go To Login'),
           ),

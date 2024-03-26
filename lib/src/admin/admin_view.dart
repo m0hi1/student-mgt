@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../shared/widgets/drawer_navigation_rail.dart';
+import '../utils/widgets/drawer_navigation_rail.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});

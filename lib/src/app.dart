@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/router.dart';
-import 'theme/controllers/theme_controller.dart';
-import 'theme/core/flex_theme_dark.dart';
-import 'theme/core/flex_theme_light.dart';
-import 'theme/core/theme_data_dark.dart';
-import 'theme/core/theme_data_light.dart';
+import 'routing/router.dart';
+import 'shared/theme/controllers/theme_controller.dart';
+import 'shared/theme/core/flex_theme_dark.dart';
+import 'shared/theme/core/flex_theme_light.dart';
+import 'shared/theme/core/theme_data_dark.dart';
+import 'shared/theme/core/theme_data_light.dart';
 
 /// The Widget that configures your application.
 class MyApp extends ConsumerWidget {
@@ -30,6 +30,8 @@ class MyApp extends ConsumerWidget {
       builder: (BuildContext context, Widget? child) {
         return MaterialApp.router(
           routerConfig: router,
+          // routerDelegate: router.routerDelegate,
+          // routeInformationParser: router.routeInformationParser,
           // Providing a restorationScopeId allows the Navigator built by the
           // MaterialApp to restore the navigation stack when a user leaves and
           // returns to the app after it has been killed while running in the

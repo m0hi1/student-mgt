@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../shared/widgets/drawer_widget.dart';
+import '../utils/widgets/drawer_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/flutter_logo.png'),
+            Image.asset('assets/images/mylogo.png'),
             Text(
               'Welcome!',
               style: Theme.of(context).textTheme.displaySmall,

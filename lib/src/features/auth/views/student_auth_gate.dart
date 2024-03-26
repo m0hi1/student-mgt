@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../shared/constants/routes.dart';
+import '../../../shared/constants/routes.dart';
 
 class StudentAuthGate extends ConsumerWidget {
   const StudentAuthGate({super.key});
@@ -26,7 +26,7 @@ class StudentAuthGate extends ConsumerWidget {
           padding: const EdgeInsets.all(20),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Image.asset('assets/images/flutter_logo.png'),
+            child: Image.asset('assets/images/mylogo.png'),
           ),
         );
       },

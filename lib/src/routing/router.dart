@@ -1,48 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../auth/views/admin_auth_gate.dart';
-import '../auth/views/choice_login.dart';
-import '../auth/views/student_auth_gate.dart';
-import '../auth/views/teacher_auth_gate.dart';
+import 'package:vidhyatri/src/features/auth/onboarding_view.dart';
+import 'package:vidhyatri/src/features/courses/courses_view.dart';
+import '../features/attendance/attendace_view.dart';
+import '../features/auth/splash_view.dart';
+import '../features/auth/views/admin_auth_gate.dart';
+import '../features/auth/views/choice_login.dart';
+import '../features/auth/views/student_auth_gate.dart';
+import '../features/auth/views/teacher_auth_gate.dart';
+import '../features/profile/user_profile.dart';
 import '../shared/constants/routes.dart';
-import '../profile/user_profile.dart';
 import '../student/bottom_nav_bar.dart';
 import '../student/home_view.dart';
 import '../student/ui/create_student_form.dart';
 import '../student/ui/student_list_page.dart';
-import 'splash_view.dart';
-
 part 'router.g.dart';
 
 // This is the router provider that will be used in the main.dart file
 // to pass the router to the MaterialApp.router
 @riverpod
 GoRouter router(RouterRef ref) {
-  // final userRole = ref.watch(userRoleProvider);
+  // final userRoleProvider = ref.watch(userRoleProvider);
 
   final rootNavigatorKey = GlobalKey<NavigatorState>();
   // final adminNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'admin');
   // final studentNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'student');
   // final teacherNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
   final homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
+  final courseNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'course');
+  final attendanceNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'attendance');
   final profileNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    //* temporary solution for checking if user is logged in or not and where to send him
-    initialLocation: loginChoiceRoute,
+
+    initialLocation: splashRoute,
 
     /// Forwards diagnostic messages to the dart:developer log() API.
     debugLogDiagnostics: true,
-    // redirect: (context, state) async {},
+    //* temporary solution for checking if user is logged in or not and where to send him
+    // redirect: (context, state) {
+    //   if (state.uri.toString() == splashRoute) {
+    //     return studentRoute;
+    //   }
+    //   return loginChoiceRoute;
+    // },
+    //  redirect: (context, state) async {
+    //     final role =
+    //         await userRoleProvider.future; // Get user role asynchronously
+
+    //     if (role == null) {
+    //       // User not logged in, redirect to login choice
+    //       return loginChoiceRoute;
+    //     }
+
+    //     switch (role) {
+    //       case UserRole.admin:
+    //         return state.location == adminAuthRoute ||
+    //                 state.location == loginChoiceRoute
+    //             ? null // Allow access to admin auth gate or login choice if already there
+    //             : adminAuthRoute; // Otherwise, redirect to admin auth gate
+    //       case UserRole.teacher:
+    //         return state.location == teacherAuthRoute ||
+    //                 state.location == loginChoiceRoute
+    //             ? null
+    //             : teacherAuthRoute;
+    //       case UserRole.student:
+    //         return state.location == studentAuthRoute ||
+    //                 state.location == loginChoiceRoute
+    //             ? null
+    //             : studentAuthRoute;
+    //       default:
+    //         return null; // Handle unexpected roles (if any)
+    //     }
+    //   },
     routes: [
       GoRoute(
         path: splashRoute,
         name: splashRoute,
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: SplashView(),
-        ),
+        builder: (context, state) => const SplashPage(),
+      ),
+
+      GoRoute(
+        path: onboardingRoute,
+        builder: (context, state) => const OnBoardingScreen(),
+        name: onboardingRoute,
       ),
 
       ///--------------------------------------------Auth---------------------------------------------------------///
@@ -100,6 +144,30 @@ GoRouter router(RouterRef ref) {
             ],
           ),
           StatefulShellBranch(
+            navigatorKey: courseNavigatorKey,
+            routes: [
+              GoRoute(
+                path: courseRoute,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: CoursesView(),
+                ),
+                name: courseRoute,
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: attendanceNavigatorKey,
+            routes: [
+              GoRoute(
+                path: attendanceRoute,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: AttendanceView(),
+                ),
+                name: attendanceRoute,
+              ),
+            ],
+          ),
+          StatefulShellBranch(
             navigatorKey: profileNavigatorKey,
             routes: [
               GoRoute(
@@ -140,14 +208,4 @@ GoRouter router(RouterRef ref) {
       child: Scaffold(body: Text("Page Not Found")),
     ),
   );
-}
-
-enum UserRole {
-  student,
-  teacher,
-  admin,
-  unauthenticated,
-  loading,
-  error,
-  unknown,
 }

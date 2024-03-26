@@ -29,6 +29,16 @@ class MyAppNavigationBottomBar extends StatelessWidget {
             label: 'Home',
           ),
           NavigationDestination(
+            selectedIcon: Icon(Icons.computer),
+            icon: Icon(Icons.computer_outlined),
+            label: 'Courses',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.pages_sharp),
+            icon: Icon(Icons.pages_outlined),
+            label: 'Attendance',
+          ),
+          NavigationDestination(
             selectedIcon: Icon(Icons.person),
             icon: Icon(Icons.person_outline),
             label: 'Profile',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vidhyatri/src/theme/controllers/theme_controller.dart';
+import 'package:vidhyatri/src/shared/theme/controllers/theme_controller.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///

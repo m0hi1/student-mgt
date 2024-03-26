@@ -6,13 +6,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:vidhyatri/src/shared/boxes/hive_boxes.dart';
 import 'src/firebase_options.dart';
 import 'src/app.dart';
-import 'src/theme/controllers/theme_controller.dart';
-import 'src/theme/services/theme_service.dart';
-import 'src/theme/services/theme_service_hive.dart';
+import 'src/shared/theme/controllers/theme_controller.dart';
+import 'src/shared/theme/services/theme_service.dart';
+import 'src/shared/theme/services/theme_service_hive.dart';
 import 'src/student/model/student_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // The ThemeServiceHive constructor requires a box name, the others do not.
   // The box name is just a file name for the file that stores the settings.
   final ThemeService themeService = ThemeServiceHive(
@@ -21,6 +22,7 @@ Future<void> main() async {
   // Initialize the theme service.
   await themeService.init();
   await Hive.initFlutter();
+
   Hive.registerAdapter(StudentModelAdapter());
   //for opening the student box
   studentBox = await Hive.openBox<StudentModel>("Students");

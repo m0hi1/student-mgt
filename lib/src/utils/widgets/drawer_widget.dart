@@ -30,40 +30,10 @@ class DrawerWidget extends StatelessWidget {
                     title: const Text("Students List"),
                     onTap: () => context.push("/studentListPage"),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.apartment),
-                    title: const Text("Book to Stay"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.airplanemode_active),
-                    title: const Text("Book a Flight"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.map),
-                    title: const Text("Book an Activity"),
-                    onTap: () {},
-                  ),
                   const Divider(color: Colors.black),
                   const ListTile(
                     title: Text("My profile"),
                     textColor: Colors.grey,
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.home),
-                    title: const Text("Home"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.luggage),
-                    title: const Text("My Trip"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.thumb_up),
-                    title: const Text("Vote"),
-                    onTap: () {},
                   ),
                   const SizedBox(
                     height: 3,
@@ -83,7 +53,7 @@ class DrawerWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: const Text(
-                              'Activate NFT',
+                              'Profile',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 17),
                             )),
@@ -108,26 +78,12 @@ class DrawerWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: const Text(
-                              'Explore NFT',
+                              'Log Out',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 17),
                             )),
                       ),
                     ),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.person),
-                    title: const Text("Login"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.person_add_alt_1_outlined,
-                      color: Colors.blue,
-                    ),
-                    title: const Text("Sign Up Now",
-                        style: TextStyle(color: Colors.blue)),
-                    onTap: () {},
                   ),
                   const Divider(color: Colors.black),
                   const ListTile(
@@ -140,8 +96,8 @@ class DrawerWidget extends StatelessWidget {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(Icons.price_check),
-                    title: const Text("Popular Currencies"),
+                    leading: const Icon(Icons.brightness_4_outlined),
+                    title: const Text("Theme Prefrences"),
                     onTap: () {},
                   ),
                   const Divider(color: Colors.black),
@@ -161,18 +117,8 @@ class DrawerWidget extends StatelessWidget {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(Icons.check_circle_outline),
-                    title: const Text("Best Price Gurantee"),
-                    onTap: () {},
-                  ),
-                  ListTile(
                     leading: const Icon(Icons.shield_moon_outlined),
-                    title: const Text("TravelSmart Protection"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.card_giftcard),
-                    title: const Text("Travel gift Cards"),
+                    title: const Text("Student Protection"),
                     onTap: () {},
                   ),
                   ListTile(
