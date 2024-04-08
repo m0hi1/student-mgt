@@ -30,6 +30,16 @@ class DrawerWidget extends StatelessWidget {
                     title: const Text("Students List"),
                     onTap: () => context.push("/studentListPage"),
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.chrome_reader_mode_outlined),
+                    title: const Text("Create Courses"),
+                    onTap: () => context.push("/createCourses"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.chrome_reader_mode_outlined),
+                    title: const Text("coursesView"),
+                    onTap: () => context.push("/coursesView"),
+                  ),
                   const Divider(color: Colors.black),
                   const ListTile(
                     title: Text("My profile"),
