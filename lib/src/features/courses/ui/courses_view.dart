@@ -36,50 +36,56 @@ class _CoursesViewState extends State<CoursesView> {
                       ),
                     ),
                     // const SizedBox(height: 70),
-                    Container(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40)),
-                          color: Colors.black,
-                        ),
-                        child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: box.length,
-                            itemBuilder: (context, index) {
-                              final CourseModel course = box.getAt(index);
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(40),
+                                  topRight: Radius.circular(40)),
+                              color: Colors.black,
+                            ),
+                            child: ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: box.length,
+                                itemBuilder: (context, index) {
+                                  final CourseModel course = box.getAt(index);
 
-                              if (box.length == 0) {
-                                return const Center(
-                                  child: Text('No Courses'),
-                                );
-                              }
-                              return Card(
-                                color: Colors.transparent,
-                                child: ListTile(
-                                  title: Text(
-                                    course.title,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  subtitle: Text(
-                                    course.description,
-                                    style: const TextStyle(color: Colors.grey),
-                                  ),
-                                  trailing: IconButton(
-                                    icon: const Icon(Icons.delete),
-                                    onPressed: () {
-                                      setState(() {
-                                        box.delete(course.title);
-                                      });
-                                    },
-                                  ),
-                                ),
-                              );
-                            })),
+                                  if (box.length == 0) {
+                                    return const Center(
+                                      child: Text('No Courses'),
+                                    );
+                                  }
+                                  return Card(
+                                    color: Colors.transparent,
+                                    child: ListTile(
+                                      title: Text(
+                                        course.title,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      subtitle: Text(
+                                        course.description,
+                                        style:
+                                            const TextStyle(color: Colors.grey),
+                                      ),
+                                      trailing: IconButton(
+                                        icon: const Icon(Icons.delete),
+                                        onPressed: () {
+                                          setState(() {
+                                            box.delete(course.title);
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                })),
+                      ],
+                    ),
                   ]),
             )
           : const Center(

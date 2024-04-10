@@ -81,7 +81,7 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         path: splashRoute,
         name: splashRoute,
-        builder: (context, state) => const CoursesView(),
+        builder: (context, state) => const SplashPage(),
       ),
 
       GoRoute(
