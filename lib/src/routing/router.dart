@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vidhyatri/src/features/auth/onboarding_view.dart';
-import 'package:vidhyatri/src/features/courses/courses_view.dart';
+import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
+import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
 import '../features/attendance/attendace_view.dart';
 import '../features/auth/splash_view.dart';
 import '../features/auth/views/admin_auth_gate.dart';
@@ -80,7 +81,7 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         path: splashRoute,
         name: splashRoute,
-        builder: (context, state) => const SplashPage(),
+        builder: (context, state) => const CoursesView(),
       ),
 
       GoRoute(
@@ -193,6 +194,16 @@ GoRouter router(RouterRef ref) {
         path: '/studentListPage',
         name: 'studentListPage',
         builder: (context, state) => const StudentListPage(),
+      ),
+      GoRoute(
+        path: '/createCourses',
+        name: 'createCourses',
+        builder: (context, state) => const CreateCourses(),
+      ),
+      GoRoute(
+        path: '/coursesView',
+        name: 'coursesView',
+        builder: (context, state) => const CoursesView(),
       ),
 
       // GoRoute(
