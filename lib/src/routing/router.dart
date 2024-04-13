@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:vidhyatri/src/features/auth/onboarding_view.dart';
+import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
 import '../features/attendance/attendace_view.dart';
-import '../features/auth/splash_view.dart';
 import '../features/auth/views/admin_auth_gate.dart';
 import '../features/auth/views/choice_login.dart';
 import '../features/auth/views/student_auth_gate.dart';
 import '../features/auth/views/teacher_auth_gate.dart';
+import '../features/bottom_nav_bar.dart';
 import '../features/profile/user_profile.dart';
 import '../shared/constants/routes.dart';
-import '../student/bottom_nav_bar.dart';
-import '../student/home_view.dart';
+import '../student/std_home_view.dart';
 import '../student/ui/create_student_form.dart';
 import '../student/ui/student_list_page.dart';
+import '../teacher/class_view.dart';
+import '../teacher/student_view.dart';
 part 'router.g.dart';
 
 // This is the router provider that will be used in the main.dart file
@@ -33,11 +34,12 @@ GoRouter router(RouterRef ref) {
   final attendanceNavigatorKey =
       GlobalKey<NavigatorState>(debugLabel: 'attendance');
   final profileNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
+  final tProfileNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'profile');
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
 
-    initialLocation: splashRoute,
+    initialLocation: onboardingRoute,
 
     /// Forwards diagnostic messages to the dart:developer log() API.
     debugLogDiagnostics: true,
@@ -79,12 +81,6 @@ GoRouter router(RouterRef ref) {
     //   },
     routes: [
       GoRoute(
-        path: splashRoute,
-        name: splashRoute,
-        builder: (context, state) => const SplashPage(),
-      ),
-
-      GoRoute(
         path: onboardingRoute,
         builder: (context, state) => const OnBoardingScreen(),
         name: onboardingRoute,
@@ -123,12 +119,12 @@ GoRouter router(RouterRef ref) {
         name: studentAuthRoute,
       ),
 
-      ///------------------------------------------BottomNavBar---------------------------------------------------///
+      ///-----------Student--------------------BottomNavBar---------------------------------------------------///
 
       StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return MyAppNavigationBottomBar(
-            navigationShell: navigationShell,
+        builder: (context, state, studentNavigationShell) {
+          return StudentNavigationBottomBar(
+            navigationShell: studentNavigationShell,
           );
         },
         branches: [
@@ -138,7 +134,7 @@ GoRouter router(RouterRef ref) {
               GoRoute(
                 path: studentRoute,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: HomeView(),
+                  child: StdHomeView(),
                 ),
                 name: studentRoute,
               ),
@@ -177,6 +173,66 @@ GoRouter router(RouterRef ref) {
                   child: UserProfile(),
                 ),
                 name: userProfileRoute,
+              ),
+            ],
+          ),
+        ],
+      ),
+
+      ///-----------Teacher--------------------BottomNavBar---------------------------------------------------///
+
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, teacherNavigationShell) {
+          return TeacherNavigationBottomBar(
+            navigationShell: teacherNavigationShell,
+          );
+        },
+        branches: [
+          StatefulShellBranch(
+            // navigatorKey: homeNavigatorKey,
+            routes: [
+              GoRoute(
+                path: teacherRoute,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: StdHomeView(),
+                ),
+                name: teacherRoute,
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            // navigatorKey: courseNavigatorKey,
+            routes: [
+              GoRoute(
+                path: classRoute,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: ClassView(),
+                ),
+                name: classRoute,
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            // navigatorKey: attendanceNavigatorKey,
+            routes: [
+              GoRoute(
+                path: studentViewRoute,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: StudentView(),
+                ),
+                name: studentViewRoute,
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: tProfileNavigatorKey,
+            routes: [
+              GoRoute(
+                path: userProfileRoute,
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: UserProfile(),
+                ),
+                // name: userProfileRoute,
               ),
             ],
           ),

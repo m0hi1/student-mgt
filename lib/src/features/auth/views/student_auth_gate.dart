@@ -9,8 +9,6 @@ import '../../../shared/constants/routes.dart';
 class StudentAuthGate extends ConsumerWidget {
   const StudentAuthGate({super.key});
 
-  static const path = '/student_sign-in';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SignInScreen(
@@ -26,7 +24,7 @@ class StudentAuthGate extends ConsumerWidget {
           padding: const EdgeInsets.all(20),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Image.asset('assets/images/mylogo.png'),
+            child: Image.asset("assets/images/student.png"),
           ),
         );
       },
@@ -52,7 +50,7 @@ class StudentAuthGate extends ConsumerWidget {
           padding: const EdgeInsets.all(20),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Image.asset('assets/images/flutter_logo.png'),
+            child: Image.asset("assets/images/student.png"),
           ),
         );
       },

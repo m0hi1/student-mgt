@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:vidhyatri/src/features/courses/model/course_model.dart';
 import 'package:vidhyatri/src/shared/boxes/hive_boxes.dart';
 

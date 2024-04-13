@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../utils/widgets/drawer_widget.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class StdHomeView extends StatelessWidget {
+  const StdHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

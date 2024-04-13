@@ -62,7 +62,7 @@ dependencies:
   url_launcher: ^6.1.12
   string_scanner: ^1.2.0
   flutter_onboarding_slider: ^1.0.11
-  splash_view: ^2.0.1
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:

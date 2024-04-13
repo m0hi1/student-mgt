@@ -11,3 +11,6 @@ const teacherRoute = '/teacher-home';
 const courseRoute = '/courses';
 const attendanceRoute = '/attendance';
 const userProfileRoute = '/User-Profile';
+const studentViewRoute = '/student-view';
+const teacherViewRoute = '/teacher-view';
+const classRoute = '/class';
