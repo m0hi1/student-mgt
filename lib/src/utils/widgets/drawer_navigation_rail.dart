@@ -28,36 +28,31 @@ class _DrawerNavRailState extends State<DrawerNavRail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: <Widget>[
-            SafeArea(
-              child: IntrinsicWidth(
-                child: NavigationRail(
-                  backgroundColor: const Color.fromARGB(255, 12, 3, 20),
-                  minExtendedWidth: 160,
-                  elevation: 6,
-                  selectedIndex: _selectedIndex,
-                  destinations: _buildDestinations(),
-                  extended: extended,
-                  onDestinationSelected: (int index) {
-                    setState(() {
-                      _selectedIndex = index;
+      body: Row(
+        children: <Widget>[
+          IntrinsicWidth(
+            child: NavigationRail(
+              backgroundColor: const Color.fromARGB(255, 12, 3, 20),
+              // minExtendedWidth: 160,
+              elevation: 6,
+              selectedIndex: _selectedIndex,
+              destinations: _buildDestinations(),
+              // extended: true,
+              onDestinationSelected: (int index) {
+                setState(() {
+                  _selectedIndex = index;
 
-                      if (_selectedIndex == 6) {
-                        context.go('/login_choice');
-                      }
-                    });
-                  },
-                ),
-              ),
+                  if (_selectedIndex == 6) {
+                    context.go('/login_choice');
+                  }
+                });
+              },
             ),
-            SafeArea(
-              child: list[_selectedIndex],
-            )
-          ],
-        ),
+          ),
+          Expanded(
+            child: list[_selectedIndex],
+          )
+        ],
       ),
     );
   }
@@ -65,28 +60,41 @@ class _DrawerNavRailState extends State<DrawerNavRail> {
   List<NavigationRailDestination> _buildDestinations() {
     return [
       NavigationRailDestination(
-        icon: InkWell(
-          onTap: () {
-            setState(() => extended = !extended);
+        icon: IconButton(
+          icon: Icon(
+            extended ? Icons.close : Icons.arrow_left,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            context.pop();
+            setState(() {
+              extended = !extended;
+            });
           },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                extended ? Icons.close : Icons.arrow_right,
-                color: Colors.white,
-              ),
-            ],
-          ),
         ),
-        label: Container(
-          padding: const EdgeInsets.only(left: 10),
-          child: const Text(
-            '',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
+        label: const Text(
+          '',
+          style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
+      // NavigationRailDestination(
+      //   icon: Row(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: [
+      //       Icon(
+      //         extended ? Icons.close : Icons.arrow_right,
+      //         color: Colors.white,
+      //       ),
+      //     ],
+      //   ),
+      //   label: Container(
+      //     padding: const EdgeInsets.only(left: 10),
+      //     child: const Text(
+      //       '',
+      //       style: TextStyle(color: Colors.white, fontSize: 18),
+      //     ),
+      //   ),
+      // ),
       const NavigationRailDestination(
         icon: Icon(
           Icons.home,

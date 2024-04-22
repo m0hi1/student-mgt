@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:vidhyatri/src/admin/admin_view.dart';
 import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
@@ -82,7 +83,7 @@ GoRouter router(RouterRef ref) {
     routes: [
       GoRoute(
         path: onboardingRoute,
-        builder: (context, state) => const OnBoardingScreen(),
+        builder: (context, state) => const AdminHomePage(),
         name: onboardingRoute,
       ),
 
@@ -260,6 +261,11 @@ GoRouter router(RouterRef ref) {
         path: '/coursesView',
         name: 'coursesView',
         builder: (context, state) => const CoursesView(),
+      ),
+      GoRoute(
+        path: '/admin',
+        name: 'admin',
+        builder: (context, state) => const AdminHomePage(),
       ),
 
       // GoRoute(

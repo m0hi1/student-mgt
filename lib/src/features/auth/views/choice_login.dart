@@ -36,6 +36,7 @@ class LoginChoicePage extends StatelessWidget {
                 //child: const Text('Admin'),.
 
                 child: SizedBox(
+                  //height: 125,
                   height: 125,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

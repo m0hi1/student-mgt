@@ -22,7 +22,7 @@ class AdminAuthGate extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Image.asset('assets/images/admin.png'),
+            child: Image.asset('assets/images/admin.jpeg'),
           ),
         );
       },
@@ -48,7 +48,7 @@ class AdminAuthGate extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: AspectRatio(
             aspectRatio: 1,
-            child: Image.asset("assets/images/admin.png"),
+            child: Image.asset("assets/images/admin.jpeg"),
           ),
         );
       },
