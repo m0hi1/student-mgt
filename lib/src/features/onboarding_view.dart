@@ -16,12 +16,16 @@ class OnBoardingScreen extends StatelessWidget {
         margin: const EdgeInsets.only(top: 15),
         child: OnBoardingSlider(
           headerBackgroundColor: Colors.white,
+          controllerColor: Colors.black,
           finishButtonText: 'Go',
           onFinish: () {
             context.goNamed(loginChoiceRoute);
           },
           finishButtonStyle: const FinishButtonStyle(
             backgroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+            ),
           ),
           skipTextButton: const Text('Skip'),
           // trailing: const Text('Login'),
@@ -50,7 +54,7 @@ class OnBoardingScreen extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   const SizedBox(
-                    height: 480,
+                    height: 400,
                   ),
                   AnimatedTextKit(animatedTexts: [
                     TyperAnimatedText(
