@@ -4,9 +4,14 @@ import 'package:lottie/lottie.dart';
 
 import '../../../shared/constants/routes.dart';
 
-class LoginChoicePage extends StatelessWidget {
+class LoginChoicePage extends StatefulWidget {
   const LoginChoicePage({super.key});
 
+  @override
+  State<LoginChoicePage> createState() => _LoginChoicePageState();
+}
+
+class _LoginChoicePageState extends State<LoginChoicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

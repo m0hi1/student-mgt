@@ -14,7 +14,7 @@ class UserProfile extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('User Profile'),
       ),
-      drawer: const DrawerWidget(),
+      drawer: const StudentDrawerWidget(),
       body: ProfileScreen(
         actions: [
           SignedOutAction((context) {

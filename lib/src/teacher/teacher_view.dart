@@ -10,7 +10,7 @@ class TeacherView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Teacher App'),
       ),
-      drawer: const DrawerWidget(),
+      drawer: const TeacherDrawerWidget(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

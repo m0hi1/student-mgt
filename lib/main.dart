@@ -14,7 +14,7 @@ import 'src/student/model/student_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // The ThemeServiceHive constructor requires a box name, the others do not.
   // The box name is just a file name for the file that stores the settings.
   final ThemeService themeService = ThemeServiceHive(

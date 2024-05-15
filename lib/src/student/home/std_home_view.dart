@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
+import '../../shared/theme/const/theme_color.dart';
+import '../../utils/widgets/drawer_widget.dart';
 
-import '../shared/theme/const/theme_color.dart';
-import '../utils/widgets/drawer_widget.dart';
-
-class TeacherHomeView extends StatelessWidget {
-  const TeacherHomeView({super.key});
+class StdHomeView extends StatelessWidget {
+  const StdHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Teacher App')),
-      drawer: const TeacherDrawerWidget(),
+      appBar: AppBar(title: const Text('Student App')),
+      drawer: const StudentDrawerWidget(),
       body: getBody(context),
       // Center(
       //   child: Column(
@@ -46,7 +46,7 @@ class TeacherHomeView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Teacher's",
+                          "Student's",
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                         SizedBox(
@@ -93,7 +93,7 @@ class TeacherHomeView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text(
-                                  "Number of Students",
+                                  "Mohit Chauhan",
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -119,7 +119,7 @@ class TeacherHomeView extends StatelessWidget {
                                             BorderRadius.circular(20)),
                                     child: const Center(
                                       child: Text(
-                                        "View Students",
+                                        "Report",
                                         style: TextStyle(
                                           fontSize: 13,
                                           color: ThemeColor.white,
@@ -144,7 +144,7 @@ class TeacherHomeView extends StatelessWidget {
                           ),
                           child: const Center(
                               child: Text(
-                            '100',
+                            '80%',
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -159,48 +159,48 @@ class TeacherHomeView extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                            color: ThemeColor.shadow,
-                            blurRadius: 10,
-                            spreadRadius: 0.1,
-                            offset: Offset(0, 10)),
-                      ],
-                      color: ThemeColor.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Create Class",
-                          style: TextStyle(
-                              fontSize: 17,
-                              color: ThemeColor.black,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Container(
-                            width: 70,
-                            height: 35,
-                            decoration: BoxDecoration(
-                                color: ThemeColor.secondary,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: const Center(
-                              child: Icon(LineIcons.plus, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // Container(
+                //   width: double.infinity,
+                //   height: 60,
+                //   decoration: BoxDecoration(
+                //       boxShadow: const [
+                //         BoxShadow(
+                //             color: ThemeColor.shadow,
+                //             blurRadius: 10,
+                //             spreadRadius: 0.1,
+                //             offset: Offset(0, 10)),
+                //       ],
+                //       color: ThemeColor.white,
+                //       borderRadius: BorderRadius.circular(20)),
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(left: 20, right: 20),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         const Text(
+                //           "Create Class",
+                //           style: TextStyle(
+                //               fontSize: 17,
+                //               color: ThemeColor.black,
+                //               fontWeight: FontWeight.w600),
+                //         ),
+                //         InkWell(
+                //           onTap: () {},
+                //           child: Container(
+                //             width: 70,
+                //             height: 35,
+                //             decoration: BoxDecoration(
+                //                 color: ThemeColor.secondary,
+                //                 borderRadius: BorderRadius.circular(20)),
+                //             child: const Center(
+                //               child: Icon(LineIcons.plus, color: Colors.white),
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -280,7 +280,7 @@ class TeacherHomeView extends StatelessWidget {
                               color: ThemeColor.primary,
                             ),
                             Text(
-                              "Upload IA",
+                              "Results",
                               style: TextStyle(
                                   fontSize: 17,
                                   color: ThemeColor.black,

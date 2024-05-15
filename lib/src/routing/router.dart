@@ -5,6 +5,7 @@ import 'package:vidhyatri/src/admin/admin_view.dart';
 import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
+import 'package:vidhyatri/src/teacher/teacher_home_view.dart';
 import '../features/attendance/attendace_view.dart';
 import '../features/auth/views/admin_auth_gate.dart';
 import '../features/auth/views/choice_login.dart';
@@ -13,7 +14,7 @@ import '../features/auth/views/teacher_auth_gate.dart';
 import '../features/bottom_nav_bar.dart';
 import '../features/profile/user_profile.dart';
 import '../shared/constants/routes.dart';
-import '../student/std_home_view.dart';
+import '../student/home/std_home_view.dart';
 import '../student/ui/create_student_form.dart';
 import '../student/ui/student_list_page.dart';
 import '../teacher/class_view.dart';
@@ -83,7 +84,7 @@ GoRouter router(RouterRef ref) {
     routes: [
       GoRoute(
         path: onboardingRoute,
-        builder: (context, state) => const AdminHomePage(),
+        builder: (context, state) => const StdHomeView(),
         name: onboardingRoute,
       ),
 
@@ -277,8 +278,17 @@ GoRouter router(RouterRef ref) {
     ],
 
     //*if page not found then it will show the page not found from here.
-    errorBuilder: (context, state) => const Center(
-      child: Scaffold(body: Text("Page Not Found")),
+    errorBuilder: (context, state) => Center(
+      child: Scaffold(
+        body: Center(
+            child: Column(
+          children: [
+            Text("Page Not Found"),
+            MaterialButton(
+                onPressed: () => context.pop(), child: Text("Go Home"))
+          ],
+        )),
+      ),
     ),
   );
 }
