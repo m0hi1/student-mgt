@@ -3,6 +3,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:vidhyatri/src/features/attendance/attendance_model.dart';
 import 'package:vidhyatri/src/features/courses/model/course_model.dart';
 import 'package:vidhyatri/src/shared/boxes/hive_boxes.dart';
 import 'src/firebase_options.dart';
@@ -26,10 +27,12 @@ Future<void> main() async {
 
   Hive.registerAdapter(StudentModelAdapter());
   Hive.registerAdapter(CourseModelAdapter());
+  Hive.registerAdapter(AttendanceModelAdapter());
 
   //for opening the student box
   studentBox = await Hive.openBox<StudentModel>("Students");
   courseBox = await Hive.openBox<CourseModel>("Courses");
+  await Hive.openBox<AttendanceModel>('attendance');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

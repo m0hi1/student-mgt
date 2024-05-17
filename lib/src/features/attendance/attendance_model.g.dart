@@ -1,38 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'student_model.dart';
+part of 'attendance_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class StudentModelAdapter extends TypeAdapter<StudentModel> {
+class AttendanceModelAdapter extends TypeAdapter<AttendanceModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 2;
 
   @override
-  StudentModel read(BinaryReader reader) {
+  AttendanceModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return StudentModel(
-      name: fields[0] as String,
-      roll: fields[1] as int,
-      course: fields[2] as String,
+    return AttendanceModel(
+      course: fields[0] as String,
+      date: fields[1] as DateTime,
+      presentStudentKeys: (fields[2] as List).cast<String>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, StudentModel obj) {
+  void write(BinaryWriter writer, AttendanceModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.course)
       ..writeByte(1)
-      ..write(obj.roll)
+      ..write(obj.date)
       ..writeByte(2)
-      ..write(obj.course);
+      ..write(obj.presentStudentKeys);
   }
 
   @override
@@ -41,7 +41,7 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is StudentModelAdapter &&
+      other is AttendanceModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

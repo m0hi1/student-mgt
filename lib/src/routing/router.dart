@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vidhyatri/src/admin/admin_view.dart';
+import 'package:vidhyatri/src/features/attendance/take_attendance.dart';
 import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
-import 'package:vidhyatri/src/teacher/teacher_home_view.dart';
 import '../features/attendance/attendace_view.dart';
 import '../features/auth/views/admin_auth_gate.dart';
 import '../features/auth/views/choice_login.dart';
@@ -16,6 +16,7 @@ import '../features/profile/user_profile.dart';
 import '../shared/constants/routes.dart';
 import '../student/home/std_home_view.dart';
 import '../student/ui/create_student_form.dart';
+import '../student/ui/student_list.dart';
 import '../student/ui/student_list_page.dart';
 import '../teacher/class_view.dart';
 import '../teacher/student_view.dart';
@@ -84,7 +85,7 @@ GoRouter router(RouterRef ref) {
     routes: [
       GoRoute(
         path: onboardingRoute,
-        builder: (context, state) => const StdHomeView(),
+        builder: (context, state) => OnBoardingScreen(),
         name: onboardingRoute,
       ),
 
@@ -159,8 +160,8 @@ GoRouter router(RouterRef ref) {
             routes: [
               GoRoute(
                 path: attendanceRoute,
-                pageBuilder: (context, state) => const NoTransitionPage(
-                  child: AttendanceView(),
+                pageBuilder: (context, state) => NoTransitionPage(
+                  child: AttendanceViewingScreen(),
                 ),
                 name: attendanceRoute,
               ),

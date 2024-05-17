@@ -11,18 +11,24 @@ class StudentModel extends HiveObject {
   String name;
   @HiveField(1)
   int roll;
+  @HiveField(2)
+  String course; // Add course field
+
   StudentModel({
     required this.name,
     required this.roll,
+    required this.course, // Make course required
   });
 
   StudentModel copyWith({
     String? name,
     int? roll,
+    String? course,
   }) {
     return StudentModel(
       name: name ?? this.name,
       roll: roll ?? this.roll,
+      course: course ?? this.course,
     );
   }
 
@@ -30,6 +36,7 @@ class StudentModel extends HiveObject {
     return <String, dynamic>{
       'name': name,
       'roll': roll,
+      'course': course,
     };
   }
 
@@ -37,6 +44,7 @@ class StudentModel extends HiveObject {
     return StudentModel(
       name: map['name'] as String,
       roll: map['roll'] as int,
+      course: map['course'] as String,
     );
   }
 
@@ -46,15 +54,16 @@ class StudentModel extends HiveObject {
       StudentModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'StudentModel(name: $name, roll: $roll)';
+  String toString() =>
+      'StudentModel(name: $name, roll: $roll, course: $course)';
 
   @override
   bool operator ==(covariant StudentModel other) {
     if (identical(this, other)) return true;
 
-    return other.name == name && other.roll == roll;
+    return other.name == name && other.roll == roll && other.course == course;
   }
 
   @override
-  int get hashCode => name.hashCode ^ roll.hashCode;
+  int get hashCode => name.hashCode ^ roll.hashCode ^ course.hashCode;
 }

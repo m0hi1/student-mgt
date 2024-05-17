@@ -39,6 +39,7 @@ dependencies:
   google_sign_in: ^6.2.1
   firebase_storage: ^11.6.7
   cloud_firestore: ^4.15.6
+  firebase_database: ^10.5.5
   firebase_analytics: ^10.8.7
   firebase_crashlytics: ^3.4.16
 
@@ -75,7 +76,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   hive_generator: ^2.0.1
   # a tool for running code generators
-  build_runner: ^2.4.8
+  build_runner: ^2.4.10
   # the code generator
   riverpod_generator: ^2.3.11
   # riverpod_lint makes it easier to work with Riverpod

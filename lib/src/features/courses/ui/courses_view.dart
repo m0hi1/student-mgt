@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vidhyatri/src/features/courses/model/course_model.dart';
 import 'package:vidhyatri/src/shared/boxes/hive_boxes.dart';
+
+import '../../../utils/widgets/drawer_widget.dart';
 
 class CoursesView extends StatefulWidget {
   const CoursesView({super.key});
@@ -14,7 +17,8 @@ class _CoursesViewState extends State<CoursesView> {
   Widget build(BuildContext context) {
     final box = courseBox;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 212, 212),
+      appBar: AppBar(title: const Text('View Courses')),
+      drawer: const StudentDrawerWidget(),
       body: box.length != 0
           ? SingleChildScrollView(
               child: Column(
@@ -86,10 +90,22 @@ class _CoursesViewState extends State<CoursesView> {
                     ),
                   ]),
             )
-          : const Center(
-              child: Text(
-                'No Courses Availble',
-                textScaler: TextScaler.linear(2),
+          : Center(
+              child: Container(
+                alignment: Alignment.center,
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      'assets/images/student1.json',
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.fill,
+                    ),
+                    const Text('Course Not Added',
+                        style: TextStyle(fontSize: 30)),
+                  ],
+                ),
               ),
             ),
     );

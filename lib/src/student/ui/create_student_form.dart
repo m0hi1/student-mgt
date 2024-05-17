@@ -62,7 +62,8 @@ class _CreateStudentFormPageState extends State<CreateStudentFormPage> {
                   _nameController.text,
                   StudentModel(
                       name: _nameController.text,
-                      roll: int.parse(_rollNumberController.text)),
+                      roll: int.parse(_rollNumberController.text),
+                      course: 'B.Tech/CSE'),
                 );
                 _nameController.clear();
                 _rollNumberController.clear();

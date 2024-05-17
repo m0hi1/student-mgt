@@ -181,8 +181,8 @@ class StudentDrawerWidget extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: const Icon(Icons.arrow_back),
-              title: const Text("Back"),
+              leading: const Icon(Icons.close),
+              title: const Text("Close"),
               onTap: () {
                 Navigator.pop(context);
               },
