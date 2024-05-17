@@ -6,13 +6,15 @@ import 'package:vidhyatri/src/features/attendance/take_attendance.dart';
 import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
+import 'package:vidhyatri/src/teacher/teacher_home_view.dart';
+import 'package:vidhyatri/src/teacher/teacher_view.dart';
 import '../features/attendance/attendace_view.dart';
 import '../features/auth/views/admin_auth_gate.dart';
 import '../features/auth/views/choice_login.dart';
 import '../features/auth/views/student_auth_gate.dart';
 import '../features/auth/views/teacher_auth_gate.dart';
 import '../features/bottom_nav_bar.dart';
-import '../features/profile/user_profile.dart';
+import '../student/profile/user_profile.dart';
 import '../shared/constants/routes.dart';
 import '../student/home/std_home_view.dart';
 import '../student/ui/create_student_form.dart';
@@ -20,6 +22,7 @@ import '../student/ui/student_list.dart';
 import '../student/ui/student_list_page.dart';
 import '../teacher/class_view.dart';
 import '../teacher/student_view.dart';
+import '../teacher/user_profile.dart';
 part 'router.g.dart';
 
 // This is the router provider that will be used in the main.dart file
@@ -197,7 +200,7 @@ GoRouter router(RouterRef ref) {
               GoRoute(
                 path: teacherRoute,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: StdHomeView(),
+                  child: TeacherHomeView(),
                 ),
                 name: teacherRoute,
               ),
@@ -209,7 +212,7 @@ GoRouter router(RouterRef ref) {
               GoRoute(
                 path: classRoute,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: ClassView(),
+                  child: CoursesView(),
                 ),
                 name: classRoute,
               ),
@@ -221,7 +224,7 @@ GoRouter router(RouterRef ref) {
               GoRoute(
                 path: studentViewRoute,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: StudentView(),
+                  child: StudentListPage(),
                 ),
                 name: studentViewRoute,
               ),
@@ -231,9 +234,9 @@ GoRouter router(RouterRef ref) {
             navigatorKey: tProfileNavigatorKey,
             routes: [
               GoRoute(
-                path: userProfileRoute,
+                path: teacherProfileRoute,
                 pageBuilder: (context, state) => const NoTransitionPage(
-                  child: UserProfile(),
+                  child: TeacherUserProfile(),
                 ),
                 // name: userProfileRoute,
               ),

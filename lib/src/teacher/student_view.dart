@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vidhyatri/src/utils/widgets/drawer_widget.dart';
 
 class StudentView extends StatelessWidget {
   const StudentView({super.key});
@@ -6,6 +7,7 @@ class StudentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: TeacherDrawerWidget(),
       appBar: AppBar(
         title: const Text('Student View'),
       ),
