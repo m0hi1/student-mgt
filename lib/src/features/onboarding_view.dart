@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vidhyatri/src/shared/theme/services/theme_service_hive_adapters.dart';
 
 import '../shared/constants/routes.dart';
 
@@ -27,22 +28,25 @@ class OnBoardingScreen extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(100)),
             ),
           ),
-          skipTextButton: const Text('Skip'),
+          skipTextButton: const Text(
+            'Skip',
+            style: TextStyle(fontSize: 20),
+          ),
           // trailing: const Text('Login'),
           background: [
             Container(
-              // margin: const EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               child: Lottie.asset(
                 'assets/images/student2.json',
                 fit: BoxFit.cover,
-                // height: 450,
-                width: 450,
+                height: 600,
+                width: 350,
               ),
             ),
             Lottie.asset(
               'assets/images/student1.json',
               fit: BoxFit.cover,
-              // height: 450,
+              height: 550,
               width: 450,
             ),
           ],
@@ -50,18 +54,18 @@ class OnBoardingScreen extends StatelessWidget {
           speed: 1,
           pageBodies: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 children: <Widget>[
                   const SizedBox(
-                    height: 400,
+                    height: 600,
                   ),
                   AnimatedTextKit(animatedTexts: [
                     TyperAnimatedText(
                       "Welcome to our Student Management System! Whether you're an administrator, a student, or a teacher, our platform is designed to streamline your educational experience",
                       textStyle: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
-                      speed: Duration(milliseconds: 15),
+                      speed: const Duration(milliseconds: 15),
                     ),
                   ]),
                 ],
@@ -72,7 +76,7 @@ class OnBoardingScreen extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   const SizedBox(
-                    height: 480,
+                    height: 600,
                   ),
                   AnimatedTextKit(animatedTexts: [
                     TyperAnimatedText(

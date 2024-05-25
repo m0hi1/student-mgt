@@ -1,4 +1,6 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
 import '../../shared/theme/const/theme_color.dart';
 import '../../utils/widgets/drawer_widget.dart';
@@ -9,7 +11,9 @@ class StdHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Student App')),
+      appBar: AppBar(
+          title: const Text('Student App'),
+          backgroundColor: FlexColor.amberDarkPrimary),
       drawer: const StudentDrawerWidget(),
       body: getBody(context),
       // Center(
@@ -108,7 +112,9 @@ class StdHomeView extends StatelessWidget {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.go('/courses');
+                                  },
                                   child: Container(
                                     width: 100,
                                     height: 35,
@@ -229,7 +235,9 @@ class StdHomeView extends StatelessWidget {
                               fontWeight: FontWeight.w600),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            context.go('/courses');
+                          },
                           child: Container(
                             width: 70,
                             height: 35,
@@ -253,7 +261,9 @@ class StdHomeView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.go('/uploads');
+                      },
                       child: Container(
                         width: (size.width / 2.5),
                         height: (size.width / 2.5),
@@ -294,7 +304,7 @@ class StdHomeView extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // context.go(location);
+                        context.go('/query');
                       },
                       child: Container(
                         width: (size.width / 2.5),

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:vidhyatri/src/shared/theme/controllers/theme_controller.dart';
+import 'package:vidhyatri/src/shared/theme/core/flex_theme_dark.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key, required this.controller});
-  static const path = '/settings';
-  final ThemeController controller;
+  const SettingsView({
+    super.key,
+  });
+  // final ThemeController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +30,9 @@ class SettingsView extends StatelessWidget {
         // SettingsController is updated, which rebuilds the MaterialApp.
         child: DropdownButton<ThemeMode>(
           // Read the selected themeMode from the controller
-          value: controller.themeMode,
+          // value: controller.themeMode,
           // Call the updateThemeMode method any time the user selects a theme.
-          onChanged: controller.updateThemeMode,
+          // onChanged: controller.updateThemeMode,
           items: const [
             DropdownMenuItem(
               value: ThemeMode.system,
@@ -45,6 +47,7 @@ class SettingsView extends StatelessWidget {
               child: Text('Dark Theme'),
             )
           ],
+          onChanged: (ThemeMode? value) {},
         ),
       ),
     );

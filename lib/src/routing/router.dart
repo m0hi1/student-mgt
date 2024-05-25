@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vidhyatri/src/admin/admin_view.dart';
-import 'package:vidhyatri/src/features/attendance/take_attendance.dart';
 import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/create_courses.dart';
+import 'package:vidhyatri/src/shared/theme/controllers/theme_controller.dart';
 import 'package:vidhyatri/src/teacher/teacher_home_view.dart';
-import 'package:vidhyatri/src/teacher/teacher_view.dart';
 import '../features/attendance/attendace_view.dart';
+import '../features/attendance/take_attendance.dart';
 import '../features/auth/views/admin_auth_gate.dart';
 import '../features/auth/views/choice_login.dart';
 import '../features/auth/views/student_auth_gate.dart';
 import '../features/auth/views/teacher_auth_gate.dart';
 import '../features/bottom_nav_bar.dart';
+import '../shared/settings/settings_view.dart';
 import '../student/profile/user_profile.dart';
 import '../shared/constants/routes.dart';
 import '../student/home/std_home_view.dart';
@@ -29,8 +30,11 @@ part 'router.g.dart';
 // to pass the router to the MaterialApp.router
 @riverpod
 GoRouter router(RouterRef ref) {
-  // final userRoleProvider = ref.watch(userRoleProvider);
-
+  (context, state) {
+    return RouteInformation(
+      location: state.location,
+    );
+  };
   final rootNavigatorKey = GlobalKey<NavigatorState>();
   // final adminNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'admin');
   // final studentNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'student');
@@ -44,51 +48,15 @@ GoRouter router(RouterRef ref) {
 
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-
     initialLocation: onboardingRoute,
-
-    /// Forwards diagnostic messages to the dart:developer log() API.
     debugLogDiagnostics: true,
-    //* temporary solution for checking if user is logged in or not and where to send him
-    // redirect: (context, state) {
-    //   if (state.uri.toString() == splashRoute) {
-    //     return studentRoute;
-    //   }
-    //   return loginChoiceRoute;
-    // },
-    //  redirect: (context, state) async {
-    //     final role =
-    //         await userRoleProvider.future; // Get user role asynchronously
+    // Restoring the state of the router when the app is resumed
+    restorationScopeId: 'router',
 
-    //     if (role == null) {
-    //       // User not logged in, redirect to login choice
-    //       return loginChoiceRoute;
-    //     }
-
-    //     switch (role) {
-    //       case UserRole.admin:
-    //         return state.location == adminAuthRoute ||
-    //                 state.location == loginChoiceRoute
-    //             ? null // Allow access to admin auth gate or login choice if already there
-    //             : adminAuthRoute; // Otherwise, redirect to admin auth gate
-    //       case UserRole.teacher:
-    //         return state.location == teacherAuthRoute ||
-    //                 state.location == loginChoiceRoute
-    //             ? null
-    //             : teacherAuthRoute;
-    //       case UserRole.student:
-    //         return state.location == studentAuthRoute ||
-    //                 state.location == loginChoiceRoute
-    //             ? null
-    //             : studentAuthRoute;
-    //       default:
-    //         return null; // Handle unexpected roles (if any)
-    //     }
-    //   },
     routes: [
       GoRoute(
         path: onboardingRoute,
-        builder: (context, state) => OnBoardingScreen(),
+        builder: (context, state) => const OnBoardingScreen(),
         name: onboardingRoute,
       ),
 
@@ -143,6 +111,7 @@ GoRouter router(RouterRef ref) {
                   child: StdHomeView(),
                 ),
                 name: studentRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -155,6 +124,7 @@ GoRouter router(RouterRef ref) {
                   child: CoursesView(),
                 ),
                 name: courseRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -167,6 +137,7 @@ GoRouter router(RouterRef ref) {
                   child: AttendanceViewingScreen(),
                 ),
                 name: attendanceRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -179,6 +150,7 @@ GoRouter router(RouterRef ref) {
                   child: UserProfile(),
                 ),
                 name: userProfileRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -203,6 +175,7 @@ GoRouter router(RouterRef ref) {
                   child: TeacherHomeView(),
                 ),
                 name: teacherRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -215,6 +188,7 @@ GoRouter router(RouterRef ref) {
                   child: CoursesView(),
                 ),
                 name: classRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -227,6 +201,7 @@ GoRouter router(RouterRef ref) {
                   child: StudentListPage(),
                 ),
                 name: studentViewRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -239,6 +214,7 @@ GoRouter router(RouterRef ref) {
                   child: TeacherUserProfile(),
                 ),
                 // name: userProfileRoute,
+                // Restoring the state of the route when the app is resumed
               ),
             ],
           ),
@@ -251,34 +227,38 @@ GoRouter router(RouterRef ref) {
         path: '/createStudentFormPage',
         name: 'createStudentFormPage',
         builder: (context, state) => const CreateStudentFormPage(),
+        // Restoring the state of the route when the app is resumed
       ),
       GoRoute(
         path: '/studentListPage',
         name: 'studentListPage',
         builder: (context, state) => const StudentListPage(),
+        // Restoring the state of the route when the app is resumed
       ),
       GoRoute(
         path: '/createCourses',
         name: 'createCourses',
         builder: (context, state) => const CreateCourses(),
+        // Restoring the state of the route when the app is resumed
       ),
       GoRoute(
         path: '/coursesView',
         name: 'coursesView',
         builder: (context, state) => const CoursesView(),
+        // Restoring the state of the route when the app is resumed
       ),
       GoRoute(
-        path: '/admin',
-        name: 'admin',
-        builder: (context, state) => const AdminHomePage(),
+        path: '/takeAttendance',
+        name: 'takeAttendance',
+        builder: (context, state) => const AttendanceTakingScreen(),
+        // Restoring the state of the route when the app is resumed
       ),
 
-      // GoRoute(
-      //   path: SettingsView.path,
-      //   name: SettingsView.path,
-      //   builder: (context, state) =>
-      //       SettingsView(controller: settingsController),
-      // ),
+      GoRoute(
+        path: '/settings',
+        name: '/settings',
+        builder: (context, state) => const SettingsView(),
+      ),
     ],
 
     //*if page not found then it will show the page not found from here.
@@ -287,9 +267,9 @@ GoRouter router(RouterRef ref) {
         body: Center(
             child: Column(
           children: [
-            Text("Page Not Found"),
+            const Text("Page Not Found"),
             MaterialButton(
-                onPressed: () => context.pop(), child: Text("Go Home"))
+                onPressed: () => context.pop(), child: const Text("Go Home"))
           ],
         )),
       ),

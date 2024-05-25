@@ -15,20 +15,21 @@ class _LoginChoicePageState extends State<LoginChoicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.only(top: 45),
+      appBar: AppBar(
+        title: const Text('Login Method'),
+        backgroundColor: Colors.amber,
+      ),
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Text(
-                "What Describe You Best",
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
+            Text(
+              "What Describe You Best",
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
             const SizedBox(height: 40),
             Container(
-              // height: 150,
+              height: 150,
               width: 175,
               child: ElevatedButton(
                 onPressed: () {

@@ -7,7 +7,7 @@ class ClassView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: TeacherDrawerWidget(),
+      drawer: const TeacherDrawerWidget(),
       appBar: AppBar(
         title: const Text("Class View"),
       ),

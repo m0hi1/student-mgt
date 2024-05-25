@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../shared/theme/const/theme_color.dart';
@@ -13,18 +14,6 @@ class TeacherHomeView extends StatelessWidget {
       appBar: AppBar(title: const Text('Teacher App')),
       drawer: const TeacherDrawerWidget(),
       body: getBody(context),
-      // Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Image.asset('assets/images/mylogo.png'),
-      //       Text(
-      //         'Welcome!',
-      //         style: Theme.of(context).textTheme.displaySmall,
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 
@@ -109,7 +98,9 @@ class TeacherHomeView extends StatelessWidget {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.go('/studentListPage');
+                                  },
                                   child: Container(
                                     width: 100,
                                     height: 35,
@@ -185,7 +176,9 @@ class TeacherHomeView extends StatelessWidget {
                               fontWeight: FontWeight.w600),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            context.go('/createCourses');
+                          },
                           child: Container(
                             width: 70,
                             height: 35,
@@ -230,7 +223,9 @@ class TeacherHomeView extends StatelessWidget {
                               fontWeight: FontWeight.w600),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            context.go('/coursesView');
+                          },
                           child: Container(
                             width: 70,
                             height: 35,

@@ -1,5 +1,7 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:line_icons/line_icon.dart';
 
 class TeacherDrawerWidget extends StatelessWidget {
   const TeacherDrawerWidget({super.key});
@@ -10,16 +12,38 @@ class TeacherDrawerWidget extends StatelessWidget {
       child: Drawer(
         child: Column(
           children: [
-            ListTile(
-              leading: const Icon(Icons.arrow_back),
-              title: const Text("Back"),
-              onTap: () {
-                Navigator.pop(context);
-              },
+            Container(
+              height: 130,
+              color: Color.fromARGB(138, 227, 212, 109),
+              child: const Padding(
+                padding: EdgeInsets.all(30),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/images/teacherd.png'),
+                    ),
+                    SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Er. Amit Kumar', style: TextStyle(fontSize: 16)),
+                        Text('amit@ace.edu', style: TextStyle(fontSize: 14)),
+                        Text('B.Tech/CSE/A1', style: TextStyle(fontSize: 14)),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: ListView(
                 children: [
+                  const Divider(color: Colors.black),
+                  const ListTile(
+                    title: Text("Features"),
+                    textColor: Colors.grey,
+                  ),
                   ListTile(
                     leading: const Icon(Icons.person_add),
                     title: const Text("Add Student"),
@@ -37,63 +61,21 @@ class TeacherDrawerWidget extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.chrome_reader_mode_outlined),
-                    title: const Text("coursesView"),
+                    title: const Text("courses View"),
                     onTap: () => context.push("/coursesView"),
                   ),
-                  const Divider(color: Colors.black),
-                  const ListTile(
-                    title: Text("My profile"),
-                    textColor: Colors.grey,
+                  ListTile(
+                    leading: const Icon(Icons.view_list_outlined),
+                    title: const Text("Take Attendance"),
+                    onTap: () => context.push("/takeAttendance"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.file_upload_outlined),
+                    title: const Text("Upload Test/Quiz/Results/Report"),
+                    onTap: () => context.push("/uploads"),
                   ),
                   const SizedBox(
                     height: 3,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                            width: 125,
-                            height: 30,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text(
-                              'Profile',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
-                            )),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                            width: 125,
-                            height: 30,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 16, 23, 103),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text(
-                              'Log Out',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
-                            )),
-                      ),
-                    ),
                   ),
                   const Divider(color: Colors.black),
                   const ListTile(
@@ -108,7 +90,9 @@ class TeacherDrawerWidget extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.brightness_4_outlined),
                     title: const Text("Theme Prefrences"),
-                    onTap: () {},
+                    onTap: () {
+                      context.go('/settings');
+                    },
                   ),
                   const Divider(color: Colors.black),
                   ListTile(
@@ -124,16 +108,6 @@ class TeacherDrawerWidget extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.lightbulb_outline),
                     title: const Text("Smart Program"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.shield_moon_outlined),
-                    title: const Text("Student Protection"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.card_membership_outlined),
-                    title: const Text("Payment Options"),
                     onTap: () {},
                   ),
                   ListTile(
@@ -180,75 +154,65 @@ class StudentDrawerWidget extends StatelessWidget {
       child: Drawer(
         child: Column(
           children: [
-            ListTile(
-              leading: const Icon(Icons.close),
-              title: const Text("Close"),
-              onTap: () {
-                Navigator.pop(context);
-              },
+            Container(
+              height: 130,
+              color: Color.fromARGB(206, 116, 161, 240),
+              child: const Padding(
+                padding: EdgeInsets.all(30),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/images/mylogo.png'),
+                    ),
+                    SizedBox(width: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Mohit Chauhan', style: TextStyle(fontSize: 16)),
+                        Text('mohit@dev.in', style: TextStyle(fontSize: 14)),
+                        Text('B.Tech/CSE/A1', style: TextStyle(fontSize: 14)),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: ListView(
                 children: [
-                  ListTile(
-                    leading: const Icon(Icons.chrome_reader_mode_outlined),
-                    title: const Text("coursesView"),
-                    onTap: () => context.push("/coursesView"),
-                  ),
                   const Divider(color: Colors.black),
                   const ListTile(
-                    title: Text("My profile"),
+                    title: Text("Features"),
                     textColor: Colors.grey,
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.chrome_reader_mode_outlined),
+                    title: const Text("My Courses"),
+                    onTap: () => context.push("/coursesView"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.chrome_reader_mode_outlined),
+                    title: const Text("Attendance View"),
+                    onTap: () => context.push("/coursesView"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.quiz_outlined),
+                    title: const Text("Study Material/Notes"),
+                    onTap: () => context.push("/notes"),
+                  ),
+                  ListTile(
+                    leading: const LineIcon(Icons.post_add),
+                    title: const Text("Exam Corner"),
+                    onTap: () => context.push("/exams"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.quiz_outlined),
+                    title: const Text("Quizzes"),
+                    onTap: () => context.push("/quiz"),
                   ),
                   const SizedBox(
                     height: 3,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                            width: 125,
-                            height: 30,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text(
-                              'Profile',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
-                            )),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                            width: 125,
-                            height: 30,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 16, 23, 103),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Text(
-                              'Log Out',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
-                            )),
-                      ),
-                    ),
                   ),
                   const Divider(color: Colors.black),
                   const ListTile(
@@ -272,23 +236,13 @@ class StudentDrawerWidget extends StatelessWidget {
                     onTap: () {},
                   ),
                   ListTile(
-                    leading: const Icon(Icons.post_add),
-                    title: const Text("Invite Program"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.lightbulb_outline),
-                    title: const Text("Smart Program"),
-                    onTap: () {},
-                  ),
-                  ListTile(
                     leading: const Icon(Icons.shield_moon_outlined),
                     title: const Text("Student Protection"),
                     onTap: () {},
                   ),
                   ListTile(
                     leading: const Icon(Icons.card_membership_outlined),
-                    title: const Text("Payment Options"),
+                    title: const Text("Payments"),
                     onTap: () {},
                   ),
                   ListTile(

@@ -5,7 +5,7 @@ import 'package:line_icons/line_icons.dart';
 import '../../shared/theme/const/theme_color.dart';
 
 class StudentList extends StatefulWidget {
-  const StudentList({Key? key}) : super(key: key);
+  const StudentList({super.key});
 
   @override
   _StudentListState createState() => _StudentListState();

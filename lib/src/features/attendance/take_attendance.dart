@@ -7,6 +7,8 @@ import '../courses/model/course_model.dart';
 import 'attendance_model.dart';
 
 class AttendanceTakingScreen extends StatefulWidget {
+  const AttendanceTakingScreen({super.key});
+
   @override
   _AttendanceTakingScreenState createState() => _AttendanceTakingScreenState();
 }

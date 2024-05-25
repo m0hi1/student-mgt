@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -20,6 +21,11 @@ class _StudentListPageState extends State<StudentListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Student List'),
+        leading: IconButton(
+          onPressed: Navigator.of(context).pop,
+          icon: const Icon(
+              Icons.arrow_back_outlined), // Adjust color for contrast
+        ),
       ),
       body: Column(
         children: <Widget>[
@@ -68,7 +74,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
         valueListenable: _studentsBox.listenable(),
         builder: (context, Box<StudentModel> box, _) {
           if (box.values.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No students added yet.'),
             );
           } else {
