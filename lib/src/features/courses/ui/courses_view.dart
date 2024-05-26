@@ -18,7 +18,7 @@ class _CoursesViewState extends State<CoursesView> {
     final box = courseBox;
     return Scaffold(
       appBar: AppBar(title: const Text('View Courses')),
-      drawer: const StudentDrawerWidget(),
+      drawer: const TeacherDrawerWidget(),
       body: box.length != 0
           ? SingleChildScrollView(
               child: Column(
@@ -26,11 +26,11 @@ class _CoursesViewState extends State<CoursesView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(top: 80, bottom: 50, left: 30),
+                      padding: EdgeInsets.only(top: 15, bottom: 20, left: 30),
                       child: Text(
                         'Courses',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                         ),
@@ -47,7 +47,7 @@ class _CoursesViewState extends State<CoursesView> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(40),
                                   topRight: Radius.circular(40)),
-                              color: Colors.black,
+                              color: Color.fromARGB(255, 246, 232, 232),
                             ),
                             child: ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
@@ -72,8 +72,9 @@ class _CoursesViewState extends State<CoursesView> {
                                       ),
                                       subtitle: Text(
                                         course.description,
-                                        style:
-                                            const TextStyle(color: Colors.grey),
+                                        style: const TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 58, 57, 57)),
                                       ),
                                       trailing: IconButton(
                                         icon: const Icon(Icons.delete),
