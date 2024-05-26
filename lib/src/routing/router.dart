@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:vidhyatri/src/Notes/NotesHomePage.dart';
 import 'package:vidhyatri/src/admin/admin_view.dart';
 import 'package:vidhyatri/src/features/onboarding_view.dart';
 import 'package:vidhyatri/src/features/courses/ui/courses_view.dart';
@@ -57,6 +58,7 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         path: onboardingRoute,
         builder: (context, state) => const OnBoardingScreen(),
+        // builder: (context, state) => StdHomeViewO(),
         name: onboardingRoute,
       ),
 
@@ -258,6 +260,18 @@ GoRouter router(RouterRef ref) {
         path: '/settings',
         name: '/settings',
         builder: (context, state) => const SettingsView(),
+      ),
+      GoRoute(
+        path: '/noteshomepage',
+        name: '/noteshomepage',
+        builder: (context, state) => const StudyMaterialPage(),
+      ),
+      GoRoute(
+        path: '/noteshomepagestd',
+        name: '/noteshomepagestd',
+        builder: (context, state) => const StudyMaterialPage(
+          showAddButton: false,
+        ),
       ),
     ],
 

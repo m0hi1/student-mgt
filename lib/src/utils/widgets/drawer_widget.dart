@@ -71,8 +71,8 @@ class TeacherDrawerWidget extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.file_upload_outlined),
-                    title: const Text("Upload Test/Quiz/Results/Report"),
-                    onTap: () => context.push("/uploads"),
+                    title: const Text("Upload Notes"),
+                    onTap: () => context.push("/noteshomepage"),
                   ),
                   const SizedBox(
                     height: 3,
@@ -194,12 +194,12 @@ class StudentDrawerWidget extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.chrome_reader_mode_outlined),
                     title: const Text("Attendance View"),
-                    onTap: () => context.push("/coursesView"),
+                    onTap: () => context.push("/attendance"),
                   ),
                   ListTile(
                     leading: const Icon(Icons.quiz_outlined),
                     title: const Text("Study Material/Notes"),
-                    onTap: () => context.push("/notes"),
+                    onTap: () => context.push("/noteshomepagestd"),
                   ),
                   ListTile(
                     leading: const LineIcon(Icons.post_add),
