@@ -100,9 +100,7 @@ class _CreateStudentFormPageState extends State<CreateStudentFormPage> {
                             duration: Duration(seconds: 1),
                           ),
                         );
-                        Timer(const Duration(seconds: 2), () {
-                          context.go('/teacher-home');
-                        });
+
                       }
 
                       _nameController.clear();
@@ -110,6 +108,7 @@ class _CreateStudentFormPageState extends State<CreateStudentFormPage> {
                     },
                     child: const Text('Add Student'),
                   ),
+                  
                 ],
               ),
             ),

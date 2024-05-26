@@ -1,54 +1,67 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:vidhyatri/src/shared/theme/controllers/theme_controller.dart';
 import 'package:vidhyatri/src/shared/theme/core/flex_theme_dark.dart';
+
+import 'stateful_header_card.dart';
+import 'theme_mode_switch.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
-class SettingsView extends StatelessWidget {
+class SettingsView extends StatefulWidget {
   const SettingsView({
     super.key,
+    required this.controller,
+    required this.themeMode,
+    required this.onThemeModeChanged,
   });
+  final ThemeController controller;
+  final ThemeMode themeMode;
+  final ValueChanged<ThemeMode> onThemeModeChanged;
+  @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> {
   // final ThemeController controller;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-        leading: IconButton(
-          onPressed: Navigator.of(context).pop,
-          icon: const Icon(
-              Icons.arrow_back_outlined), // Adjust color for contrast
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        // Glue the SettingsController to the theme selection DropdownButton.
-        //
-        // When a user selects a theme from the dropdown list, the
-        // SettingsController is updated, which rebuilds the MaterialApp.
-        child: DropdownButton<ThemeMode>(
-          // Read the selected themeMode from the controller
-          // value: controller.themeMode,
-          // Call the updateThemeMode method any time the user selects a theme.
-          // onChanged: controller.updateThemeMode,
-          items: const [
-            DropdownMenuItem(
-              value: ThemeMode.system,
-              child: Text('System Theme'),
+    final ThemeData theme = Theme.of(context);
+    final bool isLight = theme.brightness == Brightness.light;
+    final Color iconColor = isLight
+        ? Color.alphaBlend(theme.colorScheme.primary.withAlpha(0x99),
+            theme.colorScheme.onBackground)
+        : Color.alphaBlend(theme.colorScheme.primary.withAlpha(0x7F),
+            theme.colorScheme.onBackground);
+    return StatefulHeaderCard(
+      leading: Icon(Icons.gradient_outlined, color: iconColor),
+      title: const Text('Theme'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: Text('Theme setup '),
+          ),
+          ListTile(
+            title: const Text('Theme mode'),
+            subtitle: Text('Theme '
+                '${widget.themeMode.toString().dotTail}'),
+            trailing: ThemeModeSwitch(
+              themeMode: widget.themeMode,
+              onChanged: widget.onThemeModeChanged,
             ),
-            DropdownMenuItem(
-              value: ThemeMode.light,
-              child: Text('Light Theme'),
-            ),
-            DropdownMenuItem(
-              value: ThemeMode.dark,
-              child: Text('Dark Theme'),
-            )
-          ],
-          onChanged: (ThemeMode? value) {},
-        ),
+            onTap: () {
+              if (isLight) {
+                widget.onThemeModeChanged(ThemeMode.dark);
+              } else {
+                widget.onThemeModeChanged(ThemeMode.light);
+              }
+            },
+          ),
+        ],
       ),
     );
   }

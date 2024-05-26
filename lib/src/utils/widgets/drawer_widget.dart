@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:line_icons/line_icon.dart';
 
+import '../../shared/settings/setting_Args.dart';
+import '../../shared/theme/controllers/theme_controller.dart';
+
 class TeacherDrawerWidget extends StatelessWidget {
   const TeacherDrawerWidget({super.key});
 
@@ -71,8 +74,8 @@ class TeacherDrawerWidget extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.file_upload_outlined),
-                    title: const Text("Upload Notes"),
-                    onTap: () => context.push("/noteshomepage"),
+                    title: const Text("Upload Test/Quiz/Results/Report"),
+                    onTap: () => context.push("/uploads"),
                   ),
                   const SizedBox(
                     height: 3,
@@ -194,12 +197,12 @@ class StudentDrawerWidget extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.chrome_reader_mode_outlined),
                     title: const Text("Attendance View"),
-                    onTap: () => context.push("/attendance"),
+                    onTap: () => context.push("/coursesView"),
                   ),
                   ListTile(
                     leading: const Icon(Icons.quiz_outlined),
                     title: const Text("Study Material/Notes"),
-                    onTap: () => context.push("/noteshomepagestd"),
+                    onTap: () => context.push("/notes"),
                   ),
                   ListTile(
                     leading: const LineIcon(Icons.post_add),
@@ -226,8 +229,12 @@ class StudentDrawerWidget extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.brightness_4_outlined),
-                    title: const Text("Theme Prefrences"),
-                    onTap: () {},
+                    title: const Text("Theme Preferences"),
+                    onTap: () {
+                      context.go(
+                        '/settings',
+                      );
+                    },
                   ),
                   const Divider(color: Colors.black),
                   ListTile(
