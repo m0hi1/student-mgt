@@ -22,6 +22,8 @@ import '../student/home/std_home_view.dart';
 import '../student/ui/create_student_form.dart';
 import '../student/ui/student_list_page.dart';
 import '../teacher/user_profile.dart';
+import '../utils/pdf/pdf_getter.dart';
+import '../utils/pdf/pdf_picker.dart';
 part 'router.g.dart';
 
 // This is the router provider that will be used in the main.dart file
@@ -281,6 +283,16 @@ GoRouter router(RouterRef ref) {
         builder: (context, state) => const StudyMaterialPage(
           showAddButton: false,
         ),
+      ),
+      GoRoute(
+        path: '/pdf-downloader',
+        name: '/pdf-downloader',
+        builder: (context, state) => PdfDownloader(),
+      ),
+      GoRoute(
+        path: '/pdf-uploader',
+        name: '/pdf-uploader',
+        builder: (context, state) => PdfUploader(),
       ),
     ],
 
