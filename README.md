@@ -1,4 +1,4 @@
-# vidhyatri
+# Acamdmic Manaement System 
 
 A new Flutter project.
 
